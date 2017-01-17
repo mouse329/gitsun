@@ -20,17 +20,20 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/classinfo', function(req, res, next) {
+    var data = "";
     sql.connect(config).then(function() {
         new sql.Request()
         .execute('sp_MonthlyReport').then(function(recordsets) {
             console.dir(recordsets[0].length);
+            var data = recordsets[0];
+            res.render('classinfo', { title: 'classinfo', data: data });     
         }).catch(function(err) {
             //console.dir(err)
         });
     }).catch(function(err) {
-        console.dir(err)
+        //console.dir(err)
     });
-  res.render('index', { title: 'classinfo' });
+ 
 });
 
 module.exports = router;
