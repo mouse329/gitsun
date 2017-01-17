@@ -5,7 +5,7 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('sun:server');
+var debug = require('debug')('gitsun:server');
 var http = require('http');
 
 /**
