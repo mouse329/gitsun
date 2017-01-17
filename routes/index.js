@@ -9,7 +9,7 @@ var config = {
     port: 1550,
        
      pool: {
-        max: 10,
+        max: 20,
         min: 0,
         idleTimeoutMillis: 30000
     }
@@ -18,12 +18,9 @@ var config = {
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
-router.get('/classinfo', function(req, res, next) {
 
-    // Stored Procedure: sp_MonthlyReport
+router.get('/classinfo', function(req, res, next) {
     sql.connect(config).then(function() {
-        
-        
         new sql.Request()
         .execute('sp_MonthlyReport').then(function(recordsets) {
             console.dir(recordsets[0].length);
