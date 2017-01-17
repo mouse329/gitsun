@@ -7,6 +7,33 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var sql = require('mssql');
+
+var config = {
+    user: 'sa',
+    password: 'sa',
+    server: 'localhost', // You can use 'localhost\\instance' to connect to named instance 
+    database: 'SDMCenter',
+    port: 1550,
+       
+    options: {
+        encrypt: false // Use this if you're on Windows Azure 
+    }
+}
+
+sql.connect(config, function(err) {
+    // Stored Procedure 
+    new sql.Request()
+    .execute('sp_MonthlyReport7T', function(err, recordsets, returnValue) {
+        console.log(recordsets.length);
+        console.dir(recordsets[0].length);
+    });
+});
+ 
+sql.on('error', function(err) {
+    console.log(err)
+});
+
 
 var app = express();
 
