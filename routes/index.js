@@ -8,8 +8,8 @@ var config = {
     database: 'SDMCenter',
     port: 1550,
        
-     pool: {
-        max: 20,
+    pool: {
+        max: 50,
         min: 0,
         idleTimeoutMillis: 30000
     }
@@ -24,13 +24,50 @@ router.get('/classinfo', function(req, res, next) {
     sql.connect(config).then(function() {
         new sql.Request()
         .execute('sp_MonthlyReport').then(function(recordsets) {
-            var data = recordsets[0];
-            res.render('classinfo', { title: 'classinfo', data: data });     
+            var data = recordsets[0]
+            res.render('classinfo', { title: 'classinfo', data: data })   
         }).catch(function(err) {
             //console.dir(err)
         });
     }).catch(function(err) {
         //console.dir(err)
+    });
+ 
+});
+
+router.post('/meminfo', function(req, res, next){
+    var data = "";
+    var name = req.body.name;
+    sql.connect(config).then(function() {
+        new sql.Request()
+        .input('NAME', sql.NVarChar, name)
+        .execute('sp_member').then(function(recordsets) {
+            var data = recordsets[0]
+            //console.dir(recordsets[0])
+            //console.dir('req.body.name = '+name)
+            res.render('meminfo', { title: name, data: data })
+            res.redirect('/meminfo')
+        }).catch(function(err) {
+            //err
+        });
+    }).catch(function(err) {
+        //err
+    });
+});
+
+router.get('/cadreinfo', function(req, res, next) {
+    var data = "";
+    sql.connect(config).then(function() {
+        new sql.Request()
+        .execute('proc_CadreList').then(function(recordsets) {
+            var data = recordsets[0]
+            //console.dir(recordsets[0])
+            res.render('cadreinfo', { title: 'cadreinfo', data: data })   
+        }).catch(function(err) {
+            console.dir(err)
+        });
+    }).catch(function(err) {
+        console.dir(err)
     });
  
 });

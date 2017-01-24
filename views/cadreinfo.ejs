@@ -35,19 +35,11 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-            <li class="active"><a href="#">月報表<span class="sr-only">(current)</span></a></li>
-            <li><a href="/cadreinfo">班幹部查詢</a></li>
+            <li><a href="/classinfo">月報表</a></li>
+            <li class="active"><a href="/cadreinfo">班幹部查詢<span class="sr-only">(current)</span></a></li>
             <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">One more separated link</a></li>
-            </ul>
+            
             </li>
         </ul>
         <form class="navbar-form navbar-left" action="/meminfo" method="POST">
@@ -77,31 +69,36 @@
         <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
           <thead>
                 <tr>
-                    <th>班級</th>
-                    <th>班長</th>
-                    <th>類別</th>
-                    <th>系列</th>
-                    <th>上課地點</th>
-                    <th>上課時段</th>
-                    <th>人數</th>
+                    <th>學員代號</th>
+                    <th>姓名</th>
+                    <th>護持班級</th>
+                    <th>職稱</th>
+                    <th>護持時段</th>
+                    <th>母班</th>
+                    <th>母班時段</th>
                 </tr>
           </thead>
           <tfoot>
-            <tr>
-                <th colspan="7" style="text-align:right"></th>
-                
-            </tr>
+                <tr>
+                    <th>學員代號</th>
+                    <th>姓名</th>
+                    <th>護持班級</th>
+                    <th>職稱</th>
+                    <th>護持時段</th>
+                    <th>母班</th>
+                    <th>母班時段</th>
+                </tr>
           </tfoot>
           <tbody>
               <% for ( var i = 0; i<data.length; i++){ %>
               <tr>
-                  <td><%= data[i].班級  %></td>
-                  <td><%= data[i].班長  %></td>
-                  <td><%= data[i].類型  %></td>
-                  <td><%= data[i].系列  %></td>
-                  <td><%= data[i].上課地點  %></td>
-                  <td><%= data[i].上課時段  %></td>
-                  <td><%= data[i].現有人數  %></td>
+                  <td><%= data[i].ID  %></td>
+                  <td><%= data[i].Name  %></td>
+                  <td><%= data[i].Shield  %></td>
+                  <td><%= data[i].Title  %></td>
+                  <td><%= data[i].ShieldSession  %></td>
+                  <td><%= data[i].Mom  %></td>
+                  <td><%= data[i].OriSession  %></td>
               </tr>
               <% } %>
           </tbody>
@@ -130,36 +127,7 @@
                     },
                     "bProcessing": true,//顯示處理中的圖樣
                     "footerCallback": function ( row, data, start, end, display ) {
-                        var api = this.api(), data;
-            
-                        // Remove the formatting to get integer data for summation
-                        var intVal = function ( i ) {
-                            return typeof i === 'string' ?
-                                i.replace(/[\$,]/g, '')*1 :
-                                typeof i === 'number' ?
-                                    i : 0;
-                        };
-            
-                        // Total over all pages
-                        total = api
-                            .column( 6 )
-                            .data()
-                            .reduce( function (a, b) {
-                                return intVal(a) + intVal(b);
-                            }, 0 );
-            
-                        // Total over this page
-                        pageTotal = api
-                            .column( 6, { page:'current'} )
-                            .data()
-                            .reduce( function (a, b) {
-                                return intVal(a) + intVal(b);
-                            }, 0 );
-            
-                        // Update footer
-                        $( api.column( 6 ).footer() ).html(' 本頁累加:'
-                            +pageTotal +'人 ( 總人數:'+ total +' )'
-                        );
+                        var api = this.api(), data; 
                     },
                     "initComplete": function () {
                         var api = this.api();
