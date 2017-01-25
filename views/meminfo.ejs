@@ -36,7 +36,8 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
             <li><a href="/classinfo">月報表</a></li>
-            <li class="active"><a href="#">班幹部列表<span class="sr-only">(current)</span></a></li>
+            <li><a href="/cadreinfo">班幹部列表</a></li>
+            <li class="active"><a href="#">學員查詢<span class="sr-only">(current)</span></a></li>
 
         </ul>
         <form class="navbar-form navbar-left" action="/meminfo" method="POST">
@@ -73,12 +74,7 @@
                     <th>班級類型</th>
                 </tr>
           </thead>
-          <tfoot>
-            <tr>
-                <th colspan="5" style="text-align:right"></th>
-                
-            </tr>
-          </tfoot>
+          
           <tbody>
               <% for ( var i = 0; i<data.length; i++){ %>
               <tr>
@@ -114,7 +110,7 @@
                         "sInfoFiltered": " - 找到 _TOTAL_ 筆 資料",
                     },
                     "bProcessing": true,//顯示處理中的圖樣
-                   
+                    "sDom": 'rt',
                     "initComplete": function () {
                         var api = this.api();
                         api.$('td').click( function () {
