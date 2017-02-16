@@ -6,7 +6,7 @@ var config = {
     password: 'sa',
     server: 'localhost', // You can use 'localhost\\instance' to connect to named instance 
     database: 'SDMCenter',
-    port: 1550,
+    port: 1552,
        
     pool: {
         max: 50,

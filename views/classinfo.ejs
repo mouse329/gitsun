@@ -10,6 +10,7 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css">
     <style type="text/css">
         body,input,button,select,textarea{
         font-family: "Helvetica Neue", Helvetica, Arial, "微軟正黑體", "微软雅黑", "メイリオ", "맑은 고딕", sans-serif;
@@ -104,10 +105,19 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.print.min.js"></script>
     
     <script type="text/javascript">
 	        $(document).ready(function() {
                   $('#example').DataTable( {
+                    dom: 'lBfrtip',
+                                       
+                    "bProcessing": true,//顯示處理中的圖樣
                     "lengthMenu": [ [10, 25, 50, -1],[10, 25, 50, "All"] ],
                     "oLanguage": {
                         "sLengthMenu": " _MENU_ 筆/頁",
@@ -116,7 +126,7 @@
                         "sSearch": "搜尋",
                         "sInfoFiltered": " - 找到 _TOTAL_ 筆 資料",
                     },
-                    "bProcessing": true,//顯示處理中的圖樣
+                                 
                     "footerCallback": function ( row, data, start, end, display ) {
                         var api = this.api(), data;
             
@@ -154,7 +164,10 @@
                         api.$('td').click( function () {
                             api.search( this.innerHTML ).draw();
                         } );
-                    }
+                    },
+                    buttons: [
+                        'copy', 'excel', 'pdf'
+                    ],
                 } );
             } );          
   	</script>    
