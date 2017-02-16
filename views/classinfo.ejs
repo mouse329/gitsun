@@ -115,8 +115,7 @@
     <script type="text/javascript">
 	        $(document).ready(function() {
                   $('#example').DataTable( {
-                    dom: 'lBfrtip',
-                                       
+                    dom: 'lBfrtip',                                       
                     "bProcessing": true,//顯示處理中的圖樣
                     "lengthMenu": [ [10, 25, 50, -1],[10, 25, 50, "All"] ],
                     "oLanguage": {
@@ -166,8 +165,8 @@
                         } );
                     },
                     buttons: [
-                        'copy', 'excel', 'pdf'
-                    ],
+                        'copy', 'excel', 'pdf','csv','print'
+                    ]
                 } );
             } );          
   	</script>    
