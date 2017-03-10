@@ -1,19 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var sql = require('mssql');
-var config = {
-    user: 'sa',
-    password: 'sa',
-    server: 'localhost', // You can use 'localhost\\instance' to connect to named instance 
-    database: 'SDMCenter',
-    port: 1552,
-       
-    pool: {
-        max: 50,
-        min: 0,
-        idleTimeoutMillis: 30000
-    }
-}
+var config = require('config');
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
