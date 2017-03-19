@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/peoplecount', function(req, res,next){
+router.get('/peoplecount', function(req, res, next){
     res.render('peoplecount', { title: 'peoplecount' });
      
 });

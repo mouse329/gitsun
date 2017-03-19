@@ -28,9 +28,12 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-            <li><a href="/classinfo">月報表</a></li>
-            <li><a href="/cadreinfo">班幹部列表</a></li>
-            <li class="active"><a href="#">學員查詢<span class="sr-only">(current)</span></a></li>
+            <li <% if (title === 'classinfo') { %>class="active"<% } %>><a href="/classinfo">班級資訊
+                <% if (title === 'classinfo') { %><span class="sr-only">(current)</span><% } %></a></li>
+            <li <% if (title === 'meminfo')   { %>class="active"<% } %>><a href="/meminfo">所有學員查詢
+                <% if (title === 'meminfo')   { %><span class="sr-only">(current)</span><% } %></a></li>
+            <li <% if (title === 'cadreinfo') { %>class="active"<% } %>><a href="/cadreinfo">現任班幹部查詢
+                <% if (title === 'cadreinfo') { %><span class="sr-only">(current)</span><% } %></a></li>
         </ul>
         <form class="navbar-form navbar-left" action="/meminfo" method="POST">
             <div class="form-group">
