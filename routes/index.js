@@ -8,6 +8,11 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/peoplecount', function(req, res,next){
+    res.render('peoplecount', { title: 'peoplecount' });
+     
+});
+
 router.get('/classinfo', function(req, res, next) {
     var data = "";
     sql.connect(config).then(function() {
