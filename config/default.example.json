@@ -1,0 +1,15 @@
+//另存新檔，檔名改為 "default.json"
+
+{
+    "user": "username",
+    "password": "password",
+    "server": "localhost", // You can use "localhost\\instance" to connect to named instance 
+    "database": "DBname",
+    "port": 1433,
+        
+    "pool": {
+        "max": 50,
+        "min": 0,
+        "idleTimeoutMillis": 30000
+    }
+}
