@@ -8,8 +8,8 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/peoplecount', function(req, res, next){
-    res.render('peoplecount', { title: 'peoplecount' });
+router.get('/pplcount', function(req, res, next){
+    res.render('pplcount', { title: 'pplcount' });
      
 });
 
