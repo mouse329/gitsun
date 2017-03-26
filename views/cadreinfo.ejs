@@ -31,6 +31,9 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
+            var value = "";
+            $('#example').hide();
+            $('#example_pagination').hide();
             $('#example').DataTable( {
                 "data": <%-JSON.stringify(data)%>,
                 "columns": [
@@ -43,7 +46,7 @@
                     { "data": "OriSession" }
                 ],
                 
-                "lengthMenu": [ [10, 25, 50, -1],[10, 25, 50, "All"] ],
+                //"lengthMenu": [ [10, 25, 50, -1],[10, 25, 50, "All"] ],
                 "oLanguage": {
                     "sLengthMenu": " _MENU_ 筆/頁",
                     "sZeroRecords": "找不到符合的資料。",
@@ -51,10 +54,18 @@
                     "sSearch": "搜尋",
                     "sInfoFiltered": " - 找到 _TOTAL_ 筆 資料",
                 },
-                "footerCallback": function ( row, data, start, end, display ) {
-                    var api = this.api(), data; 
-                },
+
+                // "footerCallback": function ( row, data, start, end, display ) {
+                //     var api = this.api(), data; 
+                // },
                 "deferRender":    true,   //(加速)Feature control deferred rendering for additional speed of initialisation.
             } );
+            $('#example').on('search.dt', function() {
+                var value = $('.dataTables_filter input').val();
+                if (value === "")
+                    $('#example').hide();
+                else 
+                    $('#example').show();
+            }); 
         } );            	
     </script>    
