@@ -17,7 +17,7 @@ router.get('/classinfo', function(req, res, next) {
     var data = "";
     sql.connect(config).then(function() {
         new sql.Request()
-        .execute('sp_MonthlyReport').then(function(recordsets) {
+        .execute('sp_ClassInfo').then(function(recordsets) {
             var data = recordsets[0]
             res.render('classinfo', { title: 'classinfo', data: data })   
         }).catch(function(err) {
