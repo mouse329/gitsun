@@ -28,18 +28,20 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-            <li <% if (title === 'cadreinfo') { %>class="active"<% } %>><a href="/stuinfo">學員查詢
-                <% if (title === 'cadreinfo') { %><span class="sr-only">(current)</span><% } %></a></li>
-            <li <% if (title === 'cadreinfo') { %>class="active"<% } %>><a href="/stuexp">學員學習經歷
-                <% if (title === 'cadreinfo') { %><span class="sr-only">(current)</span><% } %></a></li>
-            <li <% if (title === 'cadreinfo') { %>class="active"<% } %>><a href="/cadreinfo">現任班幹部查詢
-                <% if (title === 'cadreinfo') { %><span class="sr-only">(current)</span><% } %></a></li>
-            <li <% if (title === 'cadreinfo') { %>class="active"<% } %>><a href="/cadreexp">班幹部護持經歷
-                <% if (title === 'cadreinfo') { %><span class="sr-only">(current)</span><% } %></a></li>
-            <li <% if (title === 'classinfo') { %>class="active"<% } %>><a href="/classinfo">班級資訊
-                <% if (title === 'classinfo') { %><span class="sr-only">(current)</span><% } %></a></li>
-            <li <% if (title === 'stuinfo')   { %>class="active"<% } %>><a href="/pplcount">班級人數統計
-                <% if (title === 'stuinfo')   { %><span class="sr-only">(current)</span><% } %></a></li>                
+            <li <% if (title === '學員查詢') { %>class="active"<% } %>><a href="/stuinfo">學員查詢
+                <% if (title === '學員查詢') { %><span class="sr-only">(current)</span><% } %></a></li>
+            <li <% if (title === '學員學習經歷') { %>class="active"<% } %>><a href="/stuexp">學員學習經歷
+                <% if (title === '學員學習經歷') { %><span class="sr-only">(current)</span><% } %></a></li>
+            <li <% if (title === '現任班幹部查詢') { %>class="active"<% } %>><a href="/cadreinfo">現任班幹部查詢
+                <% if (title === '現任班幹部查詢') { %><span class="sr-only">(current)</span><% } %></a></li>
+            <li <% if (title === '班幹部護持經歷') { %>class="active"<% } %>><a href="/cadreexp">班幹部護持經歷
+                <% if (title === '班幹部護持經歷') { %><span class="sr-only">(current)</span><% } %></a></li>
+            <li <% if (title === '班級資訊') { %>class="active"<% } %>><a href="/classinfo">班級資訊
+                <% if (title === '班級資訊') { %><span class="sr-only">(current)</span><% } %></a></li>
+            <li <% if (title === '班級人數統計')   { %>class="active"<% } %>><a href="/pplcount">班級人數統計
+                <% if (title === '班級人數統計')   { %><span class="sr-only">(current)</span><% } %></a></li>                
+            <li <% if (title === '班培經歷')   { %>class="active"<% } %>><a href="/cadretrn">班培經歷
+                <% if (title === '班培經歷')   { %><span class="sr-only">(current)</span><% } %></a></li>                
         </ul>
         <!--<form class="navbar-form navbar-left" action="/meminfo" method="POST">
             <div class="form-group">

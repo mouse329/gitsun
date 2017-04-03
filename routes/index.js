@@ -89,7 +89,22 @@ router.get('/cadreexp', function(req, res, next) {
     }).catch(function(err) {
         console.dir(err)
     });
- 
+});
+
+router.get('/cadretrn', function(req, res, next) {
+    var data = "";
+    sql.connect(config).then(function() {
+        new sql.Request()
+        .execute('sp_CadreTrn').then(function(recordsets) {
+            var data = recordsets[0]
+            //console.dir(recordsets[0])
+            res.render('cadretrn', { title: '班培經歷', data: data })   
+        }).catch(function(err) {
+            console.dir(err)
+        });
+    }).catch(function(err) {
+        console.dir(err)
+    });
 });
 
 module.exports = router;

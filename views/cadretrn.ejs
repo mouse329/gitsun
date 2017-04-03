@@ -1,0 +1,83 @@
+<% layout('templates/layout') -%>
+
+    <div class="container">
+      <div class="row">
+        <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+                <th>學員代號</th>
+                <th>姓名</th>
+                <th>班培班別</th>
+                <th>班培學號</th>
+                <th>遴選成績</th>
+                <th>備註</th>
+                <th>護持班級</th>
+                <th>護持班職稱</th>
+                <th>護持狀態</th>
+                <th>異動日期</th>
+                <th>母班</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+                <th>學員代號</th>
+                <th>姓名</th>
+                <th>班培班別</th>
+                <th>班培學號</th>
+                <th>遴選成績</th>
+                <th>備註</th>
+                <th>護持班級</th>
+                <th>護持班職稱</th>
+                <th>護持狀態</th>
+                <th>異動日期</th>
+                <th>母班</th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var value = "";
+            $('#example').hide();
+            $('#example_pagination').hide();
+            $('#example').DataTable( {
+                "deferRender":    true,   //(加速)Feature control deferred rendering for additional speed of initialisation.                
+                "data": <%-JSON.stringify(data)%>,
+                "columns": [
+                    { "data": "學員代號" },
+                    { "data": "姓名" },
+                    { "data": "班培班別" },
+                    { "data": "班培學號" },
+                    { "data": "遴選成績" },
+                    { "data": "備註" },
+                    { "data": "護持班級" },
+                    { "data": "護持班職稱" },
+                    { "data": "護持狀態" },
+                    { "data": "異動日期" },
+                    { "data": "母班" },
+                ],
+                
+                //"lengthMenu": [ [10, 25, 50, -1],[10, 25, 50, "All"] ],
+                "oLanguage": {
+                    "sLengthMenu": " _MENU_ 筆/頁",
+                    "sZeroRecords": "找不到符合的資料。",
+                    "sInfoEmpty": "共 0 頁",
+                    "sSearch": "搜尋",
+                    "sInfoFiltered": " - 找到 _TOTAL_ 筆 資料",
+                },
+
+                // "footerCallback": function ( row, data, start, end, display ) {
+                //     var api = this.api(), data; 
+                // },
+            } );
+            $('#example').on('search.dt', function() {
+                var value = $('.dataTables_filter input').val();
+                if (value === "")
+                    $('#example').hide();
+                else 
+                    $('#example').show();
+            }); 
+        } );            	
+    </script>    
