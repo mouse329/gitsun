@@ -35,6 +35,7 @@
             $('#example').hide();
             $('#example_pagination').hide();
             $('#example').DataTable( {
+                "dom": '<"top"fl>rt<"bottom"ip>',                
                 "deferRender":    true,   //(加速)Feature control deferred rendering for additional speed of initialisation.                
                 "data": <%-JSON.stringify(data)%>,
                 "columns": [
