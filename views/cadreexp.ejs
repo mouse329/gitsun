@@ -36,12 +36,11 @@
     <script type="text/javascript">
         $(document).ready(function() {
             var value = "";
-            //$('#example').hide();
+            $('#example').hide();
             $('#example').DataTable( {
                 //(加速)Feature control deferred rendering for additional speed of initialisation.                
                 "deferRender":    true,   
                 "data": <%-JSON.stringify(data)%>,
-                "sDom": '<"wrapper"frtip>',
                 "columns": [
                     { "data": "學員代號" },
                     { "data": "姓名" },
@@ -65,23 +64,23 @@
             } );
 
             //隱藏分頁、列長選單、筆數資訊
-            // $('div.dataTables_paginate').hide();            
-            // $('div.dataTables_info').hide();
-            // $('div.dataTables_length').hide();
+            $('div.dataTables_paginate').hide();            
+            $('div.dataTables_info').hide();
+            $('div.dataTables_length').hide();
             
             $('#example').on('search.dt', function() {
                 var value = $('.dataTables_filter input').val();
                 if (value === "") {
-                    // $('#example').hide();
-                    // $('div.dataTables_paginate').hide();
-                    // $('div.dataTables_info').hide();
-                    // $('div.dataTables_length').hide();
+                    $('#example').hide();
+                    $('div.dataTables_paginate').hide();
+                    $('div.dataTables_info').hide();
+                    $('div.dataTables_length').hide();
                 }
                 else {
-                    // $('#example').show();
-                    // $('div.dataTables_paginate').show();
-                    // $('div.dataTables_info').show();
-                    // $('div.dataTables_length').show();
+                    $('#example').show();
+                    $('div.dataTables_paginate').show();
+                    $('div.dataTables_info').show();
+                    $('div.dataTables_length').show();
                 }
             }); 
         } );            	
