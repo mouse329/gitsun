@@ -29,8 +29,11 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('#example').DataTable( {
-            //dom: 'lBfrtip',
-            "deferRender":    true,   //(加速)Feature control deferred rendering for additional speed of initialisation.            
+            dom: 'lBfrtip',
+            buttons: ['excel'],
+
+            //(加速)Feature control deferred rendering for additional speed of initialisation.            
+            "deferRender":    true,   
             "data": <%-JSON.stringify(data)%>,
             "columns": [
                 { "data": "班級" },
@@ -54,50 +57,47 @@
                 "sInfoFiltered": " - 找到 _TOTAL_ 筆 資料",
             },
 
-            // "footerCallback": function ( row, data, start, end, display ) {
-            //     var api = this.api(), data; 
+            "footerCallback": function ( row, data, start, end, display ) {
+                var api = this.api(), data; 
 
-            //     //Remove the formatting to get integer data for summation
-            //     var intVal = function ( i ) {
-            //         return typeof i === 'string' ?
-            //             i.replace(/[\$,]/g, '')*1 :
-            //             typeof i === 'number' ?
-            //                 i : 0;
-            //     };
+                //Remove the formatting to get integer data for summation
+                var intVal = function ( i ) {
+                    return typeof i === 'string' ?
+                        i.replace(/[\$,]/g, '')*1 :
+                        typeof i === 'number' ?
+                            i : 0;
+                };
     
-            //     // Total over all pages
-            //     total = api
-            //         .column( 6 )
-            //         .data()
-            //         .reduce( function (a, b) {
-            //             return intVal(a) + intVal(b);
-            //         }, 0 );
+                // Total over all pages
+                total = api
+                    .column( 9 )
+                    .data()
+                    .reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );
     
-            //     // Total over this page
-            //     pageTotal = api
-            //         .column( 6, { page:'current'} )
-            //         .data()
-            //         .reduce( function (a, b) {
-            //             return intVal(a) + intVal(b);
-            //         }, 0 );
+                // Total over this page
+                pageTotal = api
+                    .column( 9, { page:'current'} )
+                    .data()
+                    .reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );
     
-            //     // Update footer
-            //     $( api.column( 6 ).footer() ).html(' 本頁累加:'
-            //         +pageTotal +'人 ( 總人數:'+ total +' )'
-            //     );
+                // Update footer
+                $( api.column( 9 ).footer() ).html(' 本頁累加:'
+                    +pageTotal +'人 ( 總人數:'+ total +' )'
+                );
                 
-            // },
+            },
 
-            // "initComplete": function () {
-            //     var api = this.api();
-            //     api.$('td').click( function () {
-            //         api.search( this.innerHTML ).draw();
-            //     } );
-            // },
+            "initComplete": function () {
+                var api = this.api();
+                api.$('td').click( function () {
+                    api.search( this.innerHTML ).draw();
+                } );
+            },
 
-            // buttons: [
-            //     'copy', 'excel', 'pdf','csv','print'
-            // ]
         } );
     } );          
 </script>    

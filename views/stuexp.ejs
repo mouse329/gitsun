@@ -29,9 +29,9 @@
         $(document).ready(function() {
             var value = "";
             $('#example').hide();
-            $('#example_pagination').hide();
             $('#example').DataTable( {
-                "deferRender":    true,   //(加速)Feature control deferred rendering for additional speed of initialisation.                
+                //(加速)Feature control deferred rendering for additional speed of initialisation.                
+                "deferRender":    true,   
                 "data": <%-JSON.stringify(data)%>,
                 "columns": [
                     { "data": "學員代號" },
@@ -41,7 +41,7 @@
                     { "data": "異動日期" },
                 ],
                 
-                //"lengthMenu": [ [10, 25, 50, -1],[10, 25, 50, "All"] ],
+                "lengthMenu": [ [10, 25, 50, -1],[10, 25, 50, "All"] ],
                 "oLanguage": {
                     "sLengthMenu": " _MENU_ 筆/頁",
                     "sZeroRecords": "找不到符合的資料。",
@@ -49,17 +49,27 @@
                     "sSearch": "搜尋",
                     "sInfoFiltered": " - 找到 _TOTAL_ 筆 資料",
                 },
-
-                // "footerCallback": function ( row, data, start, end, display ) {
-                //     var api = this.api(), data; 
-                // },
             } );
+
+            //隱藏分頁、列長選單、筆數資訊
+            $('div.dataTables_paginate').hide();            
+            $('div.dataTables_info').hide();
+            $('div.dataTables_length').hide();
+            
             $('#example').on('search.dt', function() {
                 var value = $('.dataTables_filter input').val();
-                if (value === "")
+                if (value === "") {
                     $('#example').hide();
-                else 
+                    $('div.dataTables_paginate').hide();
+                    $('div.dataTables_info').hide();
+                    $('div.dataTables_length').hide();
+                }
+                else {
                     $('#example').show();
+                    $('div.dataTables_paginate').show();
+                    $('div.dataTables_info').show();
+                    $('div.dataTables_length').show();
+                }
             }); 
         } );            	
     </script>    
