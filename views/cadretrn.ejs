@@ -1,4 +1,20 @@
 <% layout('templates/layout') -%>
+<div>
+    Toggle column: 
+    <a class="toggle-vis" style="cursor:pointer" data-column="0">學員代號</a> - 
+    <a class="toggle-vis" style="cursor:pointer" data-column="2">班培班</a> - 
+    <a class="toggle-vis" style="cursor:pointer" data-column="3">班培成績</a> - 
+    <a class="toggle-vis" style="cursor:pointer" data-column="4">善培班</a> - 
+    <a class="toggle-vis" style="cursor:pointer" data-column="5">善培成績</a> - 
+    <a class="toggle-vis" style="cursor:pointer" data-column="6">備培班</a> - 
+    <a class="toggle-vis" style="cursor:pointer" data-column="7">備培成績</a> - 
+    <a class="toggle-vis" style="cursor:pointer" data-column="8">備註</a> - 
+    <a class="toggle-vis" style="cursor:pointer" data-column="9">護持班級</a> - 
+    <a class="toggle-vis" style="cursor:pointer" data-column="10">護持班職稱</a> - 
+    <a class="toggle-vis" style="cursor:pointer" data-column="11">護持狀態</a> - 
+    <a class="toggle-vis" style="cursor:pointer" data-column="12">異動日期</a> - 
+    <a class="toggle-vis" style="cursor:pointer" data-column="13">母班</a>
+</div>
 
     <div class="container">
       <div class="row">
@@ -7,9 +23,12 @@
             <tr>
                 <th>學員代號</th>
                 <th>姓名</th>
-                <th>班培班別</th>
-                <th>班培學號</th>
-                <th>遴選成績</th>
+                <th>班培班</th>
+                <th>班培成績</th>
+                <th>善培班</th>
+                <th>善培成績</th>
+                <th>備培班</th>
+                <th>備培成績</th>
                 <th>備註</th>
                 <th>護持班級</th>
                 <th>護持班職稱</th>
@@ -22,9 +41,12 @@
             <tr>
                 <th>學員代號</th>
                 <th>姓名</th>
-                <th>班培班別</th>
-                <th>班培學號</th>
-                <th>遴選成績</th>
+                <th>班培班</th>
+                <th>班培成績</th>
+                <th>善培班</th>
+                <th>善培成績</th>
+                <th>備培班</th>
+                <th>備培成績</th>
                 <th>備註</th>
                 <th>護持班級</th>
                 <th>護持班職稱</th>
@@ -41,16 +63,20 @@
         $(document).ready(function() {
             var value = "";
             $('#example').hide();
-            $('#example').DataTable( {
+           
+            var table = $('#example').DataTable( {
                 //(加速)Feature control deferred rendering for additional speed of initialisation.                
                 "deferRender":    true,   
                 "data": <%-JSON.stringify(data)%>,
                 "columns": [
                     { "data": "學員代號" },
                     { "data": "姓名" },
-                    { "data": "班培班別" },
-                    { "data": "班培學號" },
-                    { "data": "遴選成績" },
+                    { "data": "班培班" },
+                    { "data": "班培成績" },
+                    { "data": "善培班" },
+                    { "data": "善培成績" },
+                    { "data": "備培班" },
+                    { "data": "備培成績" },
                     { "data": "備註" },
                     { "data": "護持班級", "searchable": false },
                     { "data": "護持班職稱", "searchable": false },
@@ -68,7 +94,7 @@
                     "sInfoFiltered": " - 找到 _TOTAL_ 筆 資料",
                 },
             } );
-            
+
             //隱藏分頁、列長選單、筆數資訊
             $('div.dataTables_paginate').hide();            
             $('div.dataTables_info').hide();
@@ -89,5 +115,15 @@
                     $('div.dataTables_length').show();
                 }
             }); 
+
+            $('a.toggle-vis').on( 'click', function (e) {
+                e.preventDefault();
+        
+                // Get the column API object
+                var column = table.column( $(this).attr('data-column') );
+        
+                // Toggle the visibility
+                column.visible( ! column.visible() );
+            } );            
         } );            	
     </script>    
